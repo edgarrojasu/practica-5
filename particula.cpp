@@ -18,18 +18,22 @@ void Particula::actualizarPosicion(double dt, double ancho, double alto, ofstrea
     archivo << xNuevo << " " << yNuevo << " "<< velX << " " << velY << "\n";
 
     // Verificar colisiones horizontales
-    if (xNuevo > ancho) {
+    if (xNuevo > ancho || xNuevo < 0) {
         colX = true;
         actualizarValores(xNuevo, yNuevo);
     }
 
     // Verificar colisiones verticales (rebote en suelo)
-    if (yNuevo > alto) {
-        yNuevo = alto;
+    if (yNuevo > alto || yNuevo < 0) {
+        // Corregir posición al límite correspondiente
+        if (yNuevo < 0)
+            yNuevo = 0;       // límite superior
+        else
+            yNuevo = alto;    // límite inferior (suelo)
+
         colX = false;
         actualizarValores(xNuevo, yNuevo);
 
-        // Reducir energía del rebote
         velY *= 0.7;
         if (fabs(velY) < 1.0)
             velY = 0;
@@ -48,6 +52,7 @@ void Particula::actualizarValores(double xIn, double yIn) {
     } else {
         x = xIn;
         y = yIn;
+        velY *= -1; // <-- invertir dirección vertical al rebotar
         ang = -atan2(velY, velX) * 180 / M_PI;
         tiempoY = 0;
         tiempoX = 0;

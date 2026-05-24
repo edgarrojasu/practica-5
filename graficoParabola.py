@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Leer datos del archivo generado por el programa C++
-data = np.loadtxt("./Prac5parabola/trayectoria_particula.txt")
-
+data = np.loadtxt(r"D:\Universidad\Info2\practicas lab\practica5\trayectoria_particula.txt")
 # Separar columnas x e y
 x = data[:, 0]
 y = data[:, 1]
