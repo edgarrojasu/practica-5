@@ -3,27 +3,39 @@
 
 #include <cmath>
 #include <QGraphicsEllipseItem>
+#include "obstaculo.h"
+#include <vector>
 
 class Particula {
 private:
     double x, y;
     double velX, velY;
-    double velInY;       // velY inicial del tramo actual (para la fórmula cinemática)
+    double masa;
+    double radio;
     double g;
-    double tiempoX, tiempoY;
-    double ang;
-    int dir;
-    bool colX;
-    QGraphicsEllipseItem* item; // representación visual
+    bool activa; // false si fue absorbida por otra partícula
+    QGraphicsEllipseItem* item;
 
 public:
-    Particula(double xIn, double yIn, double velIn, double angIn, double gravedad,
-              QGraphicsEllipseItem* itemIn);
+    Particula(double xIn, double yIn, double velIn, double angIn,
+              double masa, double gravedad, QGraphicsEllipseItem* itemIn);
 
     void actualizarPosicion(double dt, double ancho, double alto);
-    void actualizarValores(double xIn, double yIn);
-    bool estaQuieto() const;
+    void verificarColisionObstaculos(const std::vector<Obstaculo*>& obstaculos);
+
+    // Colisión completamente inelástica con otra partícula
+    // Retorna true si hubo colisión, y absorbe a 'otra' (la desactiva)
+    bool verificarColisionParticula(Particula* otra);
+
     void setGravedad(double nuevaG);
+    bool estaActiva() const { return activa; }
+
+    double getX()    const { return x; }
+    double getY()    const { return y; }
+    double getVelX() const { return velX; }
+    double getVelY() const { return velY; }
+    double getMasa() const { return masa; }
+    double getRadio() const { return radio; }
 };
 
-#endif // PARTICULA_H
+#endif

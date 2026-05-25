@@ -7,10 +7,12 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    obstaculo.cpp \
     particula.cpp
 
 HEADERS += \
     mainwindow.h \
+    obstaculo.h \
     particula.h
 
 FORMS += \

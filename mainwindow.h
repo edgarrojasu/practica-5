@@ -8,7 +8,10 @@
 #include <QTimer>
 #include <QPushButton>
 #include <QVBoxLayout>
+#include <QDebug>
 #include "particula.h"
+#include "obstaculo.h"
+#include <vector>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -22,18 +25,18 @@ private slots:
     void onChangeGravity();
 
 private:
-    QGraphicsScene*       scene;
-    QGraphicsView*        view;
-    QGraphicsEllipseItem* item;
-    QTimer*               timer;
-    QPushButton*          btnGravedad;
+    QGraphicsScene* scene;
+    QGraphicsView*  view;
+    QTimer*         timer;
+    QPushButton*    btnGravedad;
 
-    Particula* particula;
+    std::vector<Particula*> particulas;
+    std::vector<Obstaculo*> obstaculos;
     double g;
 
-    static constexpr double DT     = 0.1;
-    static constexpr double ANCHO  = 950;
-    static constexpr double ALTO   = 600;
+    static constexpr double DT    = 0.1;
+    static constexpr double ANCHO = 950;
+    static constexpr double ALTO  = 600;
 };
 
-#endif // MAINWINDOW_H
+#endif
