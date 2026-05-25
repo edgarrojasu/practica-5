@@ -37,13 +37,8 @@ void Particula::actualizarPosicion(double dt, double ancho, double alto) {
         colX = false;
         actualizarValores(xNuevo, yNuevo);
 
-        velY  *= -0.7;   // invertir y disipar energía
-        velInY = velY;
-
-        if (fabs(velY) < 1.0) {
-            velY   = 0;
-            velInY = 0;
-        }
+        velY   *= -1;    // rebote perfectamente elástico
+        velInY  = velY;  // sin pérdida de energía
     }
 
     // Mover el ítem visual

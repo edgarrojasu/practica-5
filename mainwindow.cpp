@@ -40,10 +40,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::onTick() {
-    if (particula->estaQuieto()) {
-        timer->stop();
-        return;
-    }
+    // Ya no chequea estaQuieto() porque las colisiones son elásticas
     particula->actualizarPosicion(DT, ANCHO, ALTO);
 }
 
