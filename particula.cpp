@@ -1,45 +1,54 @@
-#include <cmath>
 #include "particula.h"
-#include <fstream>
+#include <cmath>
 
-Particula::Particula(double xIn, double yIn, double velIn, double angIn, double gravedad){
-    x=xIn, y=yIn, g=gravedad, tiempoX=0, tiempoY=0,ang=angIn, dir=1, colX=true;
-    velX = velIn * cos(ang * (M_PI / 180));
-    velY = velIn * sin(ang * (M_PI / 180));
+Particula::Particula(double xIn, double yIn, double velIn, double angIn, double gravedad,
+                     QGraphicsEllipseItem* itemIn)
+{
+    x = xIn;  y = yIn;
+    g = gravedad;
+    tiempoX = 0;  tiempoY = 0;
+    ang = angIn;
+    dir = 1;
+    colX = true;
+    item = itemIn;
+
+    velX  = velIn * cos(ang * (M_PI / 180));
+    velY  = velIn * sin(ang * (M_PI / 180));
+    velInY = velY;
+
+    item->setPos(x, y);
 }
 
-
-void Particula::actualizarPosicion(double dt, double ancho, double alto, ofstream &archivo){
-    // Calcular nuevas posiciones
+void Particula::actualizarPosicion(double dt, double ancho, double alto) {
+    // Cinemática
     double xNuevo = x + velX * tiempoX * dir;
-    double yNuevo = y - (velY * tiempoY - 0.5 * g * tiempoY * tiempoY);
+    double yNuevo = y - (velInY * tiempoY - 0.5 * g * tiempoY * tiempoY);
+    velY = velInY - g * tiempoY;  // velocidad instantánea
 
-    // Guardar en archivo
-    archivo << xNuevo << " " << yNuevo << " "<< velX << " " << velY << "\n";
-
-    // Verificar colisiones horizontales
+    // Colisión horizontal
     if (xNuevo > ancho || xNuevo < 0) {
         colX = true;
         actualizarValores(xNuevo, yNuevo);
     }
 
-    // Verificar colisiones verticales (rebote en suelo)
+    // Colisión vertical
     if (yNuevo > alto || yNuevo < 0) {
-        // Corregir posición al límite correspondiente
-        if (yNuevo < 0)
-            yNuevo = 0;       // límite superior
-        else
-            yNuevo = alto;    // límite inferior (suelo)
-
+        yNuevo = (yNuevo < 0) ? 0 : alto;
         colX = false;
         actualizarValores(xNuevo, yNuevo);
 
-        velY *= 0.7;
-        if (fabs(velY) < 1.0)
-            velY = 0;
+        velY  *= -0.7;   // invertir y disipar energía
+        velInY = velY;
+
+        if (fabs(velY) < 1.0) {
+            velY   = 0;
+            velInY = 0;
+        }
     }
 
-    // Actualizar tiempo
+    // Mover el ítem visual
+    item->setPos(xNuevo, yNuevo);
+
     tiempoX += dt;
     tiempoY += dt;
 }
@@ -52,13 +61,17 @@ void Particula::actualizarValores(double xIn, double yIn) {
     } else {
         x = xIn;
         y = yIn;
-        velY *= -1; // <-- invertir dirección vertical al rebotar
-        ang = -atan2(velY, velX) * 180 / M_PI;
+
+        ang    = -atan2(velY, velX) * 180.0 / M_PI;
         tiempoY = 0;
         tiempoX = 0;
     }
 }
 
-bool Particula::estaQuieto() const{
-    return (velY == 0);
+bool Particula::estaQuieto() const {
+    return (velInY == 0);
+}
+
+void Particula::setGravedad(double nuevaG) {
+    g = nuevaG;
 }
