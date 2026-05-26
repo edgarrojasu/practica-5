@@ -1,24 +1,24 @@
 #ifndef OBSTACULO_H
 #define OBSTACULO_H
 
-#include <QGraphicsRectItem>
-#include <QRectF>
-
 class Obstaculo {
 private:
     double x, y;
     double ancho, alto;
     double e;
-    QGraphicsRectItem* item;
+    int id;
 
 public:
-    Obstaculo(double x, double y, double ancho, double alto,
-              double e, QGraphicsRectItem* item);
+    Obstaculo(int id, double x, double y, double ancho, double alto, double e);
 
     bool verificarColision(double px, double py, double radio,
                            double &velX, double &velY);
 
-    QRectF getRect() const;
+    double getX()     const { return x; }
+    double getY()     const { return y; }
+    double getAncho() const { return ancho; }
+    double getAlto()  const { return alto; }
+    int    getId()    const { return id; }
 };
 
 #endif

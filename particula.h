@@ -2,7 +2,7 @@
 #define PARTICULA_H
 
 #include <cmath>
-#include <QGraphicsEllipseItem>
+#include <string>
 #include "obstaculo.h"
 #include <vector>
 
@@ -13,18 +13,15 @@ private:
     double masa;
     double radio;
     double g;
-    bool activa; // false si fue absorbida por otra partícula
-    QGraphicsEllipseItem* item;
+    bool activa;
+    int id;
 
 public:
-    Particula(double xIn, double yIn, double velIn, double angIn,
-              double masa, double gravedad, QGraphicsEllipseItem* itemIn);
+    Particula(int id, double xIn, double yIn, double velIn, double angIn,
+              double masa, double gravedad);
 
     void actualizarPosicion(double dt, double ancho, double alto);
-    void verificarColisionObstaculos(const std::vector<Obstaculo*>& obstaculos);
-
-    // Colisión completamente inelástica con otra partícula
-    // Retorna true si hubo colisión, y absorbe a 'otra' (la desactiva)
+    bool verificarColisionObstaculos(const std::vector<Obstaculo*>& obstaculos);
     bool verificarColisionParticula(Particula* otra);
 
     void setGravedad(double nuevaG);
@@ -36,6 +33,7 @@ public:
     double getVelY() const { return velY; }
     double getMasa() const { return masa; }
     double getRadio() const { return radio; }
+    int    getId()   const { return id; }
 };
 
 #endif
