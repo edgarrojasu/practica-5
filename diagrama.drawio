@@ -1,0 +1,39 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Página-1" id="jwvWicTfRc75HitmdOsr">
+    <mxGraphModel dx="903" dy="538" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3000" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="S3vsfz0NB57Ji5vauayv-1" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="PARTICULA" vertex="1">
+          <mxGeometry height="380" width="270" x="90" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-2" parent="S3vsfz0NB57Ji5vauayv-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&amp;nbsp;– x        : double&lt;br&gt;– y        : double&lt;br&gt;– velX     : double&lt;br&gt;– velY     : double&lt;br&gt;– masa     : double&lt;br&gt;– radio    : double&lt;br&gt;– g        : double&lt;br&gt;– activa   : bool&lt;br&gt;– id       : int&amp;nbsp; &amp;nbsp; &amp;nbsp;" vertex="1">
+          <mxGeometry height="144" width="270" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-3" parent="S3vsfz0NB57Ji5vauayv-1" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="270" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-4" parent="S3vsfz0NB57Ji5vauayv-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Particula(id, x, y, vel, ang, masa, g)&amp;nbsp;&lt;br&gt;+ actualizarPosicion(dt, ancho, alto) : void&amp;nbsp;&lt;br&gt;+ verificarColisionObstaculos(obstaculos) : bool&amp;nbsp;&lt;br&gt;+ verificarColisionParticula(otra) : bool&amp;nbsp;&lt;br&gt;+ setGravedad(nuevaG) : void&amp;nbsp;&lt;br&gt;+ estaActiva() : bool&amp;nbsp;&lt;br&gt;+ getX() : double&amp;nbsp;&lt;br&gt;+ getY() : double&amp;nbsp;&lt;br&gt;+ getVelX() : double&amp;nbsp;&lt;br&gt;+ getVelY() : double&amp;nbsp;&lt;br&gt;+ getMasa() : double&lt;br&gt;+ getRadio() : double&lt;div&gt;+ getId() : int&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="202" width="270" y="178" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-5" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="OBSTACULO" vertex="1">
+          <mxGeometry height="240" width="290" x="520" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-6" parent="S3vsfz0NB57Ji5vauayv-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="&amp;nbsp;– x        : double&amp;nbsp;&lt;br&gt;– y        : double&amp;nbsp;&lt;br&gt;– ancho    : double&amp;nbsp;&lt;br&gt;– alto     : double&amp;nbsp;&lt;br&gt;– e        : double&amp;nbsp;&lt;br&gt;– id       : int&amp;nbsp;" vertex="1">
+          <mxGeometry height="94" width="290" y="26" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-7" parent="S3vsfz0NB57Ji5vauayv-5" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" value="" vertex="1">
+          <mxGeometry height="8" width="290" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-8" parent="S3vsfz0NB57Ji5vauayv-5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ Obstaculo(id, x, y, ancho, alto, e)              │&lt;br&gt;+ verificarColision(px, py, radio, velX&amp;amp;, velY&amp;amp;) : bool&amp;nbsp;&lt;br&gt;+ getX()     : double&amp;nbsp;&lt;br&gt;+ getY()     : double&amp;nbsp;&lt;br&gt;+ getAncho() : double&amp;nbsp;&lt;br&gt;+ getAlto()  : double&lt;br&gt;+ getId()    : int" vertex="1">
+          <mxGeometry height="112" width="290" y="128" as="geometry" />
+        </mxCell>
+        <mxCell id="S3vsfz0NB57Ji5vauayv-9" edge="1" parent="1" source="S3vsfz0NB57Ji5vauayv-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="521" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
