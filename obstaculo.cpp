@@ -20,30 +20,12 @@ bool Obstaculo::verificarColision(double px, double py, double radio,
     double pArriba = py - arriba;
     double pAbajo  = abajo - py;
 
-    double minH = std::min(pIzq, pDer);
-    double minV = std::min(pArriba, pAbajo);
+    double minPenet = std::min({pIzq, pDer, pArriba, pAbajo});
 
-    if (minH < minV)
-    {
-        if (pIzq < pDer && velX > 0)
-        {
-            velX *= -e; return true;
-        }
-        else if (pDer <= pIzq && velX < 0)
-        {
-            velX *= -e; return true;
-        }
-    }
-    else
-    {
-        if (pArriba < pAbajo && velY > 0)
-        {
-            velY *= -e; return true;
-        }
-        else if (pAbajo <= pArriba && velY < 0)
-        {
-            velY *= -e; return true;
-        }
-    }
+    if (minPenet == pArriba && velY > 0) { velY *= -e; return true; }
+    if (minPenet == pAbajo  && velY < 0) { velY *= -e; return true; }
+    if (minPenet == pIzq    && velX > 0) { velX *= -e; return true; }
+    if (minPenet == pDer    && velX < 0) { velX *= -e; return true; }
+
     return false;
 }
