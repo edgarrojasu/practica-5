@@ -111,14 +111,14 @@ void MainWindow::setupEscena() {
 
     // J1: x en [30..410]
     double hpLat = 200, hpCen = 100, e1 = 0.7;
-    auto* o1a = makeObs( 30, 300, 90, 160, e1, hpLat, QColor(70, 130, 180));  // lateral izq
-    auto* o1b = makeObs(200, 250,120, 100, e1, hpCen, QColor(70, 130, 180));  // central
-    auto* o1c = makeObs(330, 300, 90, 160, e1, hpLat, QColor(70, 130, 180));  // lateral der
+    auto* o1a = makeObs( 0, 370, 90, 130, e1, hpLat, QColor(70, 130, 180));  // lateral izq
+    auto* o1b = makeObs(90, 270,120, 100, e1, hpCen, QColor(70, 130, 180));  // central
+    auto* o1c = makeObs(210, 370, 90, 160, e1, hpLat, QColor(70, 130, 180));  // lateral der
 
     // J2: x en [480..860]
-    auto* o2a = makeObs(480, 300, 90, 160, e1, hpLat, QColor(200,  80,  80)); // lateral izq
-    auto* o2b = makeObs(650, 250,120, 100, e1, hpCen, QColor(200,  80,  80)); // central
-    auto* o2c = makeObs(780, 300, 90, 160, e1, hpLat, QColor(200,  80,  80)); // lateral der
+    auto* o2a = makeObs(600, 370, 90, 160, e1, hpLat, QColor(200,  80,  80)); // lateral izq
+    auto* o2b = makeObs(690, 270,120, 100, e1, hpCen, QColor(200,  80,  80)); // central
+    auto* o2c = makeObs(810, 370, 90, 160, e1, hpLat, QColor(200,  80,  80)); // lateral der
 
     // ── Proyectiles ───────────────────────────────────────────────────────
     auto makeProy = [&](QColor color) -> Proyectil* {
