@@ -29,41 +29,40 @@ private slots:
     void onDisparar();
 
 private:
-    // Escena
     QGraphicsScene* scene;
     QGraphicsView*  view;
     QTimer*         timer;
 
-    // UI controles
-    QSlider*   sliderAngulo;
-    QSlider*   sliderVelocidad;
-    QLabel*    lblAngulo;
-    QLabel*    lblVelocidad;
-    QLabel*    lblTurno;
-    QLabel*    lblEstado;
+    QSlider*     sliderAngulo;
+    QSlider*     sliderVelocidad;
+    QLabel*      lblAngulo;
+    QLabel*      lblVelocidad;
+    QLabel*      lblTurno;
+    QLabel*      lblEstado;
     QPushButton* btnDisparar;
 
-    // Juego
     Jugador* jugador1;
     Jugador* jugador2;
-    int turnoActual;   // 1 o 2
+    int  turnoActual;
     bool simulando;
 
-    // Constantes
-    static constexpr double DT       = 0.05;
-    static constexpr double ANCHO    = 900;
-    static constexpr double ALTO     = 500;
-    static constexpr double G        = 9.81;
-    static constexpr int    MAX_REB  = 5;
-    static constexpr double MASA_P   = 2.0;
-    static constexpr double RADIO_P  = 10.0;
+    static constexpr double DT      = 0.1;
+    static constexpr double ANCHO   = 900.0;
+    static constexpr double ALTO    = 500.0;
+    static constexpr double G       = 9.81;
+    static constexpr int    MAX_REB = 5;
+    static constexpr double MASA_P  = 2.0;
+    static constexpr double RADIO_P = 10.0;
 
     void setupUI();
     void setupEscena();
-    void verificarVictoria();
     void cambiarTurno();
+    void verificarVictoria();
+
     QGraphicsTextItem* crearLabel(const QString& txt, double x, double y,
-                                  int size = 12, QColor color = Qt::black);
+                                   int size = 12, QColor color = Qt::black);
+    ObstaculoJuego* crearObstaculo(double x, double y, double w, double h,
+                                    double e, double hp, QColor color);
 };
 
 #endif

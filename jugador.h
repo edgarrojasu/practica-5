@@ -8,33 +8,22 @@
 
 class Jugador {
 private:
-    int    numero;       // 1 o 2
-    double xBase;        // posición X de lanzamiento
-    double yBase;        // posición Y de lanzamiento
-    bool   vivo;
+    int    numero;
+    double xBase;
+    double yBase;
 
 public:
     std::vector<ObstaculoJuego*> obstaculos;
     Proyectil* proyectil;
 
-    Jugador(int numero, double xBase, double yBase, Proyectil* proy)
-        : numero(numero), xBase(xBase), yBase(yBase), vivo(true), proyectil(proy) {}
+    Jugador(int numero, double xBase, double yBase, Proyectil* proy);
 
-    void lanzar(double vel, double angGrados) {
-        proyectil->lanzar(xBase, yBase, vel, angGrados);
-    }
-
-    // Verifica si todos los obstáculos propios están destruidos
-    bool perdio() const {
-        for (auto* obs : obstaculos)
-            if (!obs->estaDestruido()) return false;
-        return true;
-    }
-
-    int    getNumero() const { return numero; }
-    double getXBase()  const { return xBase; }
-    double getYBase()  const { return yBase; }
-    QString getNombre() const { return "Jugador " + QString::number(numero); }
+    void    lanzar(double vel, double angGrados);
+    bool    perdio() const;
+    int     getNumero() const;
+    double  getXBase()  const;
+    double  getYBase()  const;
+    QString getNombre() const;
 };
 
 #endif
