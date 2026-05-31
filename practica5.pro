@@ -1,18 +1,13 @@
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT += core gui widgets
 
 CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    obstaculo.cpp \
-    particula.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    obstaculo.h \
-    particula.h
-
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+    mainwindow.h \
+    jugador.h \
+    proyectil.h \
+    obstaculo_juego.h
