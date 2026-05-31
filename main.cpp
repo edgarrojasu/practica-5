@@ -5,6 +5,9 @@
 #include "particula.h"
 #include "obstaculo.h"
 
+using namespace std;
+
+
 int main()
 {
     std::ofstream archivo("trayectoria_particulas.txt");
@@ -25,21 +28,18 @@ int main()
     archivo << "# Eventos: COLISION_OBSTACULO, COLISION_PARTICULAS\n";
     archivo << "# ANCHO=" << ANCHO << " ALTO=" << ALTO << "\n\n";
 
-    // 4 partículas: id, x, y, vel, ang, masa, g
     std::vector<Particula*> particulas;
-    particulas.push_back(new Particula(1,  50, 300,  80,  65, 1.0, G));
-    particulas.push_back(new Particula(2, 900, 200,  70, 110, 1.5, G));
-    particulas.push_back(new Particula(3, 200, 500,  60,  40, 2.0, G));
-    particulas.push_back(new Particula(4, 700, 400,  90,  80, 1.0, G));
+    particulas.push_back(new Particula(1,  50, 300,  100,  65, 1.0, G));
+    particulas.push_back(new Particula(2, 900, 200,  100, 110, 1.5, G));
+    particulas.push_back(new Particula(3, 200, 500,  100,  40, 2.0, G));
+    particulas.push_back(new Particula(4, 700, 400,  100,  80, 1.0, G));
 
-    // 4 obstáculos: id, x, y, ancho, alto, e
     std::vector<Obstaculo*> obstaculos;
-    obstaculos.push_back(new Obstaculo(1, 300, 400, 80, 80, 0.6));
-    obstaculos.push_back(new Obstaculo(2, 600, 250, 80, 80, 0.6));
-    obstaculos.push_back(new Obstaculo(3, 150, 550, 80, 80, 0.6));
-    obstaculos.push_back(new Obstaculo(4, 750, 500, 80, 80, 0.6));
+    obstaculos.push_back(new Obstaculo(1, 300, 400, 80, 80, 1.0));
+    obstaculos.push_back(new Obstaculo(2, 600, 250, 80, 80, 1.0));
+    obstaculos.push_back(new Obstaculo(3, 150, 550, 80, 80, 0.8));
+    obstaculos.push_back(new Obstaculo(4, 750, 500, 80, 80, 0.8));
 
-    // Registrar obstáculos al inicio
     archivo << "# OBSTACULOS\n";
     for (auto* obs : obstaculos)
         archivo << "OBS" << obs->getId() << " "
@@ -52,7 +52,6 @@ int main()
         double t = paso * DT;
         archivo << std::fixed << std::setprecision(3);
 
-        // Guardar estado actual
         archivo << "t=" << t << "\n";
         for (auto* p : particulas)
         {
@@ -63,11 +62,9 @@ int main()
                     << p->getMasa() << "\n";
         }
 
-        // Mover
         for (auto* p : particulas)
             p->actualizarPosicion(DT, ANCHO, ALTO);
 
-        // Colisiones con obstáculos — registrar evento si ocurre
         for (auto* p : particulas)
         {
             if (!p->estaActiva()) continue;
@@ -82,7 +79,6 @@ int main()
             }
         }
 
-        // Colisiones entre partículas — registrar evento si ocurre
         for (int i = 0; i < (int)particulas.size(); i++)
         {
             for (int j = i+1; j < (int)particulas.size(); j++)
@@ -107,7 +103,7 @@ int main()
     }
 
     archivo.close();
-    std::cout << "Simulacion completada. Datos en trayectoria_particulas.txt\n";
+    cout << "Simulacion completada. Datos en trayectoria_particulas.txt\n";
 
     for (auto* p : particulas) delete p;
     for (auto* o : obstaculos) delete o;

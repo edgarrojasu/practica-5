@@ -64,16 +64,14 @@ bool Particula::verificarColisionParticula(Particula* otra)
     double dy   = otra->y - y;
     double dist = sqrt(dx*dx + dy*dy);
 
-    if (dist > radio + otra->radio) return false;
+    if (dist > (radio + otra->radio)) return false;
 
-    // Conservación de momento: v' = (m1v1 + m2v2) / (m1+m2)
     double masaTotal = masa + otra->masa;
     double velXNueva = (masa * velX + otra->masa * otra->velX) / masaTotal;
     double velYNueva = (masa * velY + otra->masa * otra->velY) / masaTotal;
 
-    // Centro de masa como nueva posición
-    x = (masa * x + otra->masa * otra->x) / masaTotal;
-    y = (masa * y + otra->masa * otra->y) / masaTotal;
+    //x = (masa * x + otra->masa * otra->x) / masaTotal;
+    //y = (masa * y + otra->masa * otra->y) / masaTotal;
 
     radio = sqrt(radio*radio + otra->radio*otra->radio);
     masa  = masaTotal;

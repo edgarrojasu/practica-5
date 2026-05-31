@@ -7,10 +7,10 @@ Obstaculo::Obstaculo(int idIn, double xIn, double yIn, double anchoIn, double al
 bool Obstaculo::verificarColision(double px, double py, double radio,
                                    double &velX, double &velY)
 {
-    double izq    = x         - radio;
-    double der    = x + ancho + radio;
-    double arriba = y         - radio;
-    double abajo  = y + alto  + radio;
+    double izq    = x - (radio/2);
+    double der    = x + ancho + (radio/2);
+    double arriba = y - (radio/2);
+    double abajo  = y + alto  + (radio/2);
 
     if (px < izq || px > der || py < arriba || py > abajo)
         return false;
